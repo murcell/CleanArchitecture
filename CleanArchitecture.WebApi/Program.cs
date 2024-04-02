@@ -3,6 +3,7 @@ using CleanArchitecture.Application.Services;
 using CleanArchitecture.Persistance.Context;
 using CleanArchitecture.Persistance.Services;
 using CleanArchitecture.Presentation;
+using CleanArchitecture.WebApi.Middlewares;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<ICarService, CardService>();
 builder.Services.AddAutoMapper(typeof(CleanArchitecture.Persistance.AssemblyReference).Assembly);
+builder.Services.AddTransient<ExceptionMiddleware>();
 
 string conStr = builder.Configuration.GetConnectionString("CleanArch");
 // Add services to the container.
@@ -40,6 +42,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleWareExtension();
 
 app.UseHttpsRedirection();
 

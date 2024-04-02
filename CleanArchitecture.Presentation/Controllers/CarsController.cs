@@ -3,11 +3,6 @@ using CleanArchitecture.Domain.Dtos;
 using CleanArchitecture.Presentation.Abstraction;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CleanArchitecture.Presentation.Controllers
 {
@@ -21,6 +16,8 @@ namespace CleanArchitecture.Presentation.Controllers
            MessageResponse response = await _mediator.Send(createCarCommand,cancellationToken);
            return Ok(response);
         }
+
+
     }
 
 }
